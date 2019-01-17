@@ -1,5 +1,6 @@
 package com.sadad.jib.config;
 
+import com.sadad.jib.security.TokenAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 /**
  * @author: Arash Abbasi (arash1abbasi@gmail.com)
@@ -39,7 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.addFilterBefore(jwtAuthenticationTokenFilter(), BasicAuthenticationFilter.class)
                 .exceptionHandling()
                 .and()
                 .cors()
@@ -62,5 +64,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/profile-info").permitAll();
 
     }
+
+    @Bean
+    public TokenAuthenticationFilter jwtAuthenticationTokenFilter() throws Exception {
+        return new TokenAuthenticationFilter();
+    }
+
 
 }
