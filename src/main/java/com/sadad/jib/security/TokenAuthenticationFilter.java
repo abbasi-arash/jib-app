@@ -3,7 +3,6 @@ package com.sadad.jib.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -18,11 +17,13 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     private final String AUTH_HEADER = "Authorization";
 
+    private final int length = 7;
+
     private String getToken(HttpServletRequest request) {
 
         String authHeader = request.getHeader(AUTH_HEADER);
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            return authHeader;
+            return authHeader.substring(length);
         }
 
         return null;

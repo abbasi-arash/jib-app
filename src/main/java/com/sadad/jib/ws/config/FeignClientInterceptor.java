@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 public class FeignClientInterceptor implements RequestInterceptor {
     @Override
     public void apply(RequestTemplate requestTemplate) {
-        requestTemplate.header("Authorization", SecurityUtils.getToken());
+        requestTemplate.header("Authorization", "Bearer " + SecurityUtils.getToken());
     }
 }
