@@ -1,4 +1,4 @@
-package com.sadad.jib.ws;
+package com.sadad.jib.ws.config;
 
 import com.sadad.jib.util.SecurityUtils;
 import feign.RequestInterceptor;
