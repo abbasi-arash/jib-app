@@ -15,7 +15,7 @@ public class AccountBalanceResource {
     @Autowired
     private AccountAccountBalanceService accountTransactionsService;
 
-    @PostMapping("/account-balances")
+    @PostMapping("/v1/account-balances")
     public ResponseFeign<AccountBalancesResponseFeign> findAccountAccountBalance(@Valid @RequestBody AccountBalanceRequest request) {
         return accountTransactionsService.findAccountAccountBalance(request.getAccountNumber());
     }
