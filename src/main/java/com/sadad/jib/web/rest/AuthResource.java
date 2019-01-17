@@ -1,5 +1,6 @@
 package com.sadad.jib.web.rest;
 
+import com.sadad.jib.dto.Token;
 import com.sadad.jib.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ public class AuthResource {
     private AuthService authService;
 
     @PostMapping(value = "/v1/token")
-    public String createToken(@RequestBody String code) {
+    public Token createToken(@RequestBody String code) {
         return authService.createToken(code);
     }
 }

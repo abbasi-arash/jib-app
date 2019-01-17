@@ -1,10 +1,11 @@
 package com.sadad.jib.service;
 
 import com.sadad.jib.dto.Token;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
+import com.sadad.jib.exception.CustomException;
+import com.sadad.jib.exception.ErrorCode;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Base64Utils;
 import org.springframework.util.LinkedMultiValueMap;
@@ -18,25 +19,43 @@ import java.util.Arrays;
  * @author: Arash Abbasi (arash1abbasi@gmail.com)
  */
 @Service
+@Data
 public class AuthService {
+    @Value("${application.client.secret}")
+    private String secret;
 
-    public String createToken(String authCode) {
+    @Value("${application.client.id}")
+    private String clientId;
+
+    @Value("${outh.server.token}")
+    private String tokenServer;
+
+    @Value("${outh.server.path}")
+    private String authServer;
+
+    @Value("${application.client.redirect.uri}")
+    private String redirectURL;
+
+    public Token createToken(String authCode) {
         try {
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
             headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-            headers.set("Authorization", "Basic " + Base64Utils.encodeToString("2525b046-c2ca-4c93-a320-db982518:2cf5e9b2-8089-46bb-9a18-5904d513b33c".getBytes()));
+            headers.set("Authorization", "Basic " + Base64Utils.encodeToString
+                    ((clientId+":"+secret).getBytes()));
             MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
             body.add("code", authCode);
-            body.add("redirect_uri", "http://localhost:8084");
+            body.add("redirect_uri", redirectURL);
             body.add("grant_type", "authorization_code");
-            body.add("client_id", "2525b046-c2ca-4c93-a320-db982518");
+            body.add("client_id", clientId);
             HttpEntity<Object> entity = new HttpEntity<>(body, headers);
-            restTemplate.exchange("http://pfm.myoxygen.ir/auth/realms/master/protocol/openid-connect/token", HttpMethod.POST, entity,Token.class);
+            ResponseEntity<Token> result = restTemplate.exchange(tokenServer, HttpMethod.POST, entity,Token.class);
+            return result.getBody();
         } catch (Exception ex) {
             String responseBodyAsString = ((HttpClientErrorException) ex).getResponseBodyAsString();
+            throw new CustomException(responseBodyAsString, ErrorCode.NOT_AUTHORIZED);
         }
-        return"";
+
     }
 }

@@ -5,7 +5,7 @@ package com.sadad.jib.exception;
  */
 public enum ErrorCode {
 
-;
+    NOT_AUTHORIZED(1001, "NOT_AUTHORIZED", 403, true, "authorization problem!!");
 
     private final int number;
     private final String code;
