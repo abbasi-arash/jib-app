@@ -1,7 +1,7 @@
 package com.sadad.jib.exception;
 
 
-import com.sadad.jib.dto.ExceptionResponse;
+import com.sadad.jib.dto.response.ExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

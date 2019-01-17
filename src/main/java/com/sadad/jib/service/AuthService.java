@@ -1,8 +1,10 @@
 package com.sadad.jib.service;
 
-import com.sadad.jib.dto.Token;
+import com.sadad.jib.dto.request.AuthCodeRequest;
+import com.sadad.jib.dto.response.Token;
 import com.sadad.jib.exception.CustomException;
 import com.sadad.jib.exception.ErrorCode;
+import io.jsonwebtoken.lang.Assert;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -36,7 +38,7 @@ public class AuthService {
     @Value("${application.client.redirect.uri}")
     private String redirectURL;
 
-    public Token createToken(String authCode) {
+    public Token createToken(AuthCodeRequest request) {
         try {
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders headers = new HttpHeaders();
@@ -45,7 +47,7 @@ public class AuthService {
             headers.set("Authorization", "Basic " + Base64Utils.encodeToString
                     ((clientId+":"+secret).getBytes()));
             MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-            body.add("code", authCode);
+            body.add("code", request.getCode());
             body.add("redirect_uri", redirectURL);
             body.add("grant_type", "authorization_code");
             body.add("client_id", clientId);
@@ -62,6 +64,6 @@ public class AuthService {
 
     public void createUser(Token token){
 
-        token.getAccess_token()
+        token.getAccess_token();
     }
 }

@@ -1,4 +1,4 @@
-package com.sadad.jib.dto;
+package com.sadad.jib.dto.response;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
