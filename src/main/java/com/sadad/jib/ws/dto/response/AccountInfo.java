@@ -5,7 +5,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class AccountResponseFeign {
+public class AccountInfo {
     String accountNumber;
     String accountType;
     Boolean hasBlockedAmount;

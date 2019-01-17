@@ -1,6 +1,7 @@
 package com.sadad.jib.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -20,8 +21,10 @@ import java.util.Map;
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     private final String AUTH_HEADER = "Authorization";
-
     private final int length = 7;
+    @Autowired
+    private ObjectMapper objectMapper;
+
 
     private String getToken(HttpServletRequest request) {
 
@@ -37,11 +40,10 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         String authToken = getToken(request);
         if (authToken != null) {
-            List<GrantedAuthority> list = new ArrayList<>();
+            List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
             Jwt jwt = JwtHelper.decode(authToken);
-            ObjectMapper objectMapper = new ObjectMapper();
             Map<String, Object> map = objectMapper.readValue(jwt.getClaims(), Map.class);
-            User roles = new User((String) map.get("ssn"), "password", list);
+            User roles = new User((String) map.get("ssn"), "password", grantedAuthorities);
             TokenBasedAuthentication authentication = new TokenBasedAuthentication(roles);
             authentication.setToken(authToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);

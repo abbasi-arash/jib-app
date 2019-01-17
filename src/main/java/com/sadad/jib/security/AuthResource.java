@@ -1,4 +1,4 @@
-package com.sadad.jib.web.rest;
+package com.sadad.jib.security;
 
 import com.sadad.jib.dto.request.AuthCodeRequest;
 import com.sadad.jib.dto.response.Token;

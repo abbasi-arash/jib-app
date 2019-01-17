@@ -7,5 +7,5 @@ import java.util.List;
 
 @Data
 public class AccountInfoResponseFeign {
-    List<AccountInfoResponseFeign> accounts;
+    List<AccountInfo> accounts;
 }

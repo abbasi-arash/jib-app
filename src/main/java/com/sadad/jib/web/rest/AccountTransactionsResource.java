@@ -17,7 +17,7 @@ public class AccountTransactionsResource {
     @Autowired
     private AccountTransactionsService accountTransactionsService;
 
-    @PostMapping("/account-transactions")
+    @PostMapping("/v1/account-transactions")
     public ResponseFeign<AccountTransactionsResponseFeign> findAccountTransactions(@RequestBody AccountTransactionsRequest request) {
         return accountTransactionsService.findAccountTransactions(request);
 
