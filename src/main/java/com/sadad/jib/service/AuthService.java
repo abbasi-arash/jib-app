@@ -51,11 +51,17 @@ public class AuthService {
             body.add("client_id", clientId);
             HttpEntity<Object> entity = new HttpEntity<>(body, headers);
             ResponseEntity<Token> result = restTemplate.exchange(tokenServer, HttpMethod.POST, entity,Token.class);
+            createUser(result.getBody());
             return result.getBody();
         } catch (Exception ex) {
             String responseBodyAsString = ((HttpClientErrorException) ex).getResponseBodyAsString();
             throw new CustomException(responseBodyAsString, ErrorCode.NOT_AUTHORIZED);
         }
 
+    }
+
+    public void createUser(Token token){
+
+        token.getAccess_token()
     }
 }

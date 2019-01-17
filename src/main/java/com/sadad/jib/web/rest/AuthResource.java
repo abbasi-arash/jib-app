@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author: Arash Abbasi (arash1abbasi@gmail.com)
  */
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthResource {
     @Autowired
     private AuthService authService;
