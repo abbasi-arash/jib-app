@@ -1,8 +1,8 @@
-package com.sadad.jib.ws.config;
+package com.sadad.jib.ws;
 
 import com.sadad.jib.dto.request.AccountTransactionsRequest;
-import com.sadad.jib.ws.config.dto.AccountTransactionsResponseFeign;
-import com.sadad.jib.ws.config.dto.ResponseFeign;
+import com.sadad.jib.ws.dto.response.AccountTransactionsResponseFeign;
+import com.sadad.jib.ws.dto.ResponseFeign;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

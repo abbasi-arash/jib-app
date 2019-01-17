@@ -1,4 +1,4 @@
-package com.sadad.jib.ws.config.dto;
+package com.sadad.jib.ws.dto.response;
 
 import lombok.Data;
 

@@ -2,8 +2,8 @@ package com.sadad.jib.web.rest;
 
 import com.sadad.jib.dto.request.AccountTransactionsRequest;
 import com.sadad.jib.service.AccountTransactionsService;
-import com.sadad.jib.ws.config.dto.AccountTransactionsResponseFeign;
-import com.sadad.jib.ws.config.dto.ResponseFeign;
+import com.sadad.jib.ws.dto.response.AccountTransactionsResponseFeign;
+import com.sadad.jib.ws.dto.ResponseFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
