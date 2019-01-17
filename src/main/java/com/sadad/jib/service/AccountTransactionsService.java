@@ -1,9 +1,9 @@
 package com.sadad.jib.service;
 
 import com.sadad.jib.dto.request.AccountTransactionsRequest;
-import com.sadad.jib.ws.config.AccountTransactionsFeign;
-import com.sadad.jib.ws.config.dto.AccountTransactionsResponseFeign;
-import com.sadad.jib.ws.config.dto.ResponseFeign;
+import com.sadad.jib.ws.AccountTransactionsFeign;
+import com.sadad.jib.ws.dto.response.AccountTransactionsResponseFeign;
+import com.sadad.jib.ws.dto.ResponseFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
