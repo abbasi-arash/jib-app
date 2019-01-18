@@ -2,7 +2,7 @@ package com.sadad.jib.web.rest;
 
 import com.sadad.jib.dto.request.AccountBalanceRequest;
 import com.sadad.jib.service.AccountAccountBalanceService;
-import com.sadad.jib.ws.dto.ResponseFeign;
+import com.sadad.jib.dto.Response;
 import com.sadad.jib.ws.dto.response.AccountBalancesResponseFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +19,7 @@ public class AccountBalanceResource {
     private AccountAccountBalanceService accountTransactionsService;
 
     @PostMapping("/v1/account-balances")
-    public ResponseFeign<AccountBalancesResponseFeign> findAccountAccountBalance(@Valid @RequestBody AccountBalanceRequest request) {
+    public Response<AccountBalancesResponseFeign> findAccountAccountBalance(@Valid @RequestBody AccountBalanceRequest request) {
 
         return accountTransactionsService.findAccountAccountBalance(request.getAccountNumber());
     }

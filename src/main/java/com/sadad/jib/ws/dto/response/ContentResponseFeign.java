@@ -16,5 +16,6 @@ public class ContentResponseFeign {
     private Integer transactionAmount;
     private String transactionChannel;
     private Integer terminalId;
+    private String CategoryName;
 
 }
