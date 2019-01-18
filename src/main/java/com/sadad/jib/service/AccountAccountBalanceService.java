@@ -13,7 +13,6 @@ public class AccountAccountBalanceService {
     private AccountBalancesFeign accountBalancesFeign;
 
     public Response<AccountBalancesResponseFeign> findAccountAccountBalance(String accountNumber) {
-
         return accountBalancesFeign.findAccountBalances(accountNumber);
 
     }

@@ -17,6 +17,6 @@ public class CategoryResource {
 
     @GetMapping("/v1/categories")
     public List<Category> findAllCategory(){
-        return categoryService.findAllcategory();
+        return categoryService.findAllCategory();
     }
 }
