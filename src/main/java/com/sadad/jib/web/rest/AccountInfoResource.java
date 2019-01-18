@@ -1,5 +1,6 @@
 package com.sadad.jib.web.rest;
 
+import com.sadad.jib.dto.response.AccountInfoResponse;
 import com.sadad.jib.service.AccountsInfoService;
 import com.sadad.jib.dto.Response;
 import com.sadad.jib.ws.dto.response.AccountInfoResponseFeign;
@@ -16,7 +17,8 @@ public class AccountInfoResource {
     private AccountsInfoService accountsInfoService;
 
     @GetMapping(value = "/v1/account-list")
-    public Response<AccountInfoResponseFeign> findAllAccount(){
+    public Response<AccountInfoResponse> findAllAccount() {
+
         return accountsInfoService.findAllAccount();
     }
 

@@ -1,6 +1,6 @@
 package com.sadad.jib.ws.config;
 
-import com.sadad.jib.util.SecurityUtils;
+import com.sadad.jib.security.SecurityUtils;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import org.springframework.stereotype.Component;
