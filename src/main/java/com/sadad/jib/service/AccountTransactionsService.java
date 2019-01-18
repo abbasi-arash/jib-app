@@ -1,6 +1,5 @@
 package com.sadad.jib.service;
 
-import com.sadad.jib.domain.Category;
 import com.sadad.jib.dto.Response;
 import com.sadad.jib.dto.request.AccountTransactionsRequest;
 import com.sadad.jib.dto.response.AccountTransactionsResponse;
@@ -10,7 +9,6 @@ import com.sadad.jib.ws.dto.response.ContentResponseFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +17,7 @@ public class AccountTransactionsService {
 
     @Autowired
     private AccountTransactionsFeign accountTransactionsFeign;
+    @Autowired
     private CategoryService categoryService;
 
     public Response<AccountTransactionsResponse> findAccountTransactions(AccountTransactionsRequest request) {
