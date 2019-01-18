@@ -14,4 +14,5 @@ public class Category {
 
     private String categoryName;
     private String categoryParent;
+    private Integer terminal;
 }
