@@ -1,4 +1,4 @@
-package com.sadad.jib.domain;
+package com.sadad.jib.dto.response;
 
 import lombok.Data;
 

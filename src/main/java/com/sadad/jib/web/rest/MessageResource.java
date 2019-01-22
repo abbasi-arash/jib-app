@@ -1,6 +1,6 @@
 package com.sadad.jib.web.rest;
 
-import com.sadad.jib.domain.MessageResponse;
+import com.sadad.jib.dto.response.MessageResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
